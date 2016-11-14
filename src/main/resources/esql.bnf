@@ -1,0 +1,13 @@
+move-stmt = MOVE func-chain FROM source TO dest[ WHERE select-cond];
+select-stmt = SELECT select-expr FROM source[ WHERE select-cond];
+update-stmt = UPDATE table SET column-assigns[ WHERE select-cond];
+delete-stmt = DELETE FROM source[ WHERE select-cond];
+
+source = queue | table
+column-assigns = (column-assign [, column-assigns])
+column-assign = {prop: atom}
+select-expr = (atom [, select-expr])
+select-cond = cond [AND|OR (select-cond)]
+cond = atom compare-with atom | atom | NOT cond
+atom = func-chain(prop) | prop | constant
+func-chain =  func | func(func-chain)
