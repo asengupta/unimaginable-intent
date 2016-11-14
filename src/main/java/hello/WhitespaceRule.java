@@ -1,7 +1,5 @@
 package hello;
 
-import java.util.List;
-
 /**
  * Created by asengupta on 11/11/16.
  */

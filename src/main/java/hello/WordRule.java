@@ -5,15 +5,15 @@ package hello;
  */
 public class WordRule extends TokenRule {
 
-    private WordRuleState currentState;
+    private CharacterRuleState currentState;
 
     public WordRule(String word) {
         currentState = nextRule(0, word.toCharArray());
     }
 
-    private WordRuleState nextRule(int index, char[] characters) {
-        if (index == characters.length - 1) return new WordRuleState(null, characters[index]);
-        return new WordRuleState(nextRule(index + 1, characters), characters[index]);
+    private CharacterRuleState nextRule(int index, char[] characters) {
+        if (index == characters.length - 1) return new CharacterRuleState(null, characters[index]);
+        return new CharacterRuleState(nextRule(index + 1, characters), characters[index]);
     }
 
     @Override
