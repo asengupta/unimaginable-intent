@@ -11,9 +11,9 @@ public class WordRule extends TokenRule {
         currentState = nextRule(0, word.toCharArray());
     }
 
-    private CharacterRuleState nextRule(int index, char[] characters) {
-        if (index == characters.length - 1) return new CharacterRuleState(null, characters[index]);
-        return new CharacterRuleState(nextRule(index + 1, characters), characters[index]);
+    private SpecificCharacterRuleState nextRule(int index, char[] characters) {
+        if (index == characters.length - 1) return new SpecificCharacterRuleState(null, characters[index]);
+        return new SpecificCharacterRuleState(nextRule(index + 1, characters), characters[index]);
     }
 
     @Override

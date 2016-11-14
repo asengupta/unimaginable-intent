@@ -6,7 +6,9 @@ package hello;
 public class WhitespaceRule extends TokenRule {
     @Override
     public boolean match(Character character) {
-        return character.equals(' ');
+        boolean matches = character.equals(' ');
+        if (matches) System.out.println("Matched a space");
+        return matches;
     }
 
     @Override
