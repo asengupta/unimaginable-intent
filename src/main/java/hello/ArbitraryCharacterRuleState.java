@@ -9,7 +9,7 @@ public class ArbitraryCharacterRuleState implements CharacterRuleState {
     @Override
     public boolean match(Character character) {
         boolean matches = matcher.run(character);
-        System.out.println(matches ? "Matched: " + character : "Did not match with :" + character);
+//        System.out.println(matches ? "Matched: " + character : "Did not match with :" + character);
         return matches;
     }
 

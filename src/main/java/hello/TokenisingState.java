@@ -1,6 +1,8 @@
 package hello;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -11,9 +13,11 @@ import static java.util.stream.Collectors.*;
  */
 public class TokenisingState {
     private TokenRules rules;
+    private final List<TokenRule> sequentialRules;
 
     public TokenisingState(TokenRules rules) {
         this.rules = rules;
+        sequentialRules = new ArrayList<>();
     }
 
     public TokenRules rules(Character character) {
@@ -21,14 +25,22 @@ public class TokenisingState {
         return rules;
     }
 
-    public TokenRules rules(Character character, TokenRules predictedRules) {
-        Stream<TokenRule> tokenRuleStream = StreamSupport.stream(predictedRules.spliterator(), false)
+    public TokenRules rules(Character character, TokenRules candidateRules) {
+        Stream<TokenRule> matchingRulesStream = StreamSupport.stream(candidateRules.spliterator(), false)
                 .filter(predictedRule -> predictedRule.match(character));
-        List<TokenRule> matchingRules = tokenRuleStream
+        Stream<TokenRule> matchingRulesStream2 = StreamSupport.stream(candidateRules.spliterator(), false)
+                .filter(predictedRule -> predictedRule.match(character));
+
+        sequentialRules.addAll(matchingRulesStream2.collect(Collectors.toList()));
+        List<TokenRule> predictedRulesStream = matchingRulesStream
                 .flatMap(filteredRule -> filteredRule.predict(character).stream())
                 .collect(toList());
 
-        if (matchingRules.isEmpty()) throw new RuntimeException("No rules matched...terminating streaming!");
-        return new TokenRules(matchingRules);
+        if (predictedRulesStream.isEmpty()) throw new RuntimeException("No rules matched...terminating streaming!");
+        return new TokenRules(predictedRulesStream);
+    }
+
+    public ESqlRules emittedRules() {
+        return new ESqlRules(sequentialRules);
     }
 }

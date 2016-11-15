@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.StreamSupport;
 
 /**
@@ -7,15 +9,18 @@ import java.util.stream.StreamSupport;
  */
 public class ESqlTokeniserPipeline {
     public ESqlRules run(String input) {
-        TokenRules candidateRules = new TokenRules(word("MOVE"));
+        TokenRules candidateRules = TokenRules.ALL_RULES();
         TokenisingState state = new TokenisingState(candidateRules);
         StreamSupport.stream(new StringSpliterator(input), false).forEach(character -> {
             state.rules(character);
         });
-        return new ESqlRules(input.split(" "));
+        return state.emittedRules();
     }
 
-    private WordRule word(String word) {
-        return new WordRule(word);
+    private TokenRule word(String word) {
+        return new SpecificWordRule(word);
+    }
+    private TokenRule anyWord() {
+        return new ArbitraryWordRule();
     }
 }

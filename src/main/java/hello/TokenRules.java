@@ -1,8 +1,6 @@
 package hello;
 
-import java.util.List;
-import java.util.Spliterator;
-import java.util.stream.Collectors;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -10,6 +8,10 @@ import java.util.stream.StreamSupport;
  * Created by asengupta on 11/11/16.
  */
 public class TokenRules {
+    public static TokenRules ALL_RULES() {
+        return new TokenRules(new LineDelimiterRule(), new WhitespaceRule(), new ArbitraryWordRule());
+    }
+
     private TokenRule[] rules;
 
     public TokenRules(TokenRule... rules) {
@@ -26,5 +28,9 @@ public class TokenRules {
 
     public Stream<TokenRule> stream() {
         return StreamSupport.stream(spliterator(), false);
+    }
+
+    public Collection<TokenRule> asList() {
+        return Arrays.asList(rules);
     }
 }

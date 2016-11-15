@@ -3,11 +3,11 @@ package hello;
 /**
  * Created by asengupta on 11/14/16.
  */
-public class WordRule extends TokenRule {
+public class SpecificWordRule extends TokenRule {
 
     private CharacterRuleState currentState;
 
-    public WordRule(String word) {
+    public SpecificWordRule(String word) {
         currentState = nextRule(0, word.toCharArray());
     }
 
@@ -18,7 +18,9 @@ public class WordRule extends TokenRule {
 
     @Override
     public boolean match(Character character) {
-        return currentState.match(character);
+        boolean match = currentState.match(character);
+        if (match) System.out.println("[SPECIFIC WORD] Matched a " + character);
+        return match;
     }
 
     @Override

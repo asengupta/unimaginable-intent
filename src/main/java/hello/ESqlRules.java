@@ -10,15 +10,16 @@ import static java.util.Arrays.asList;
  * Created by asengupta on 11/11/16.
  */
 public class ESqlRules {
+    private List<TokenRule> tokenRules;
 
-    private final List<String> sanitisedTokens;
-
-    public ESqlRules(String[] strings) {
-        List<String> tokens = asList(strings);
-        sanitisedTokens = StreamSupport.stream(tokens.spliterator(), false).filter(t -> !("".equals(t.trim()))).collect(Collectors.toList());
+    public ESqlRules(List<TokenRule> tokenRules) {
+        this.tokenRules = tokenRules;
     }
 
-    public List<String> asArray() {
-        return sanitisedTokens;
+    @Override
+    public String toString() {
+        return "ESqlRules{" +
+                "tokenRules=" + tokenRules +
+                '}';
     }
 }
