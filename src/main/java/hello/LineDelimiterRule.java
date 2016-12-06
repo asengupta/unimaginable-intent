@@ -15,4 +15,9 @@ public class LineDelimiterRule extends TokenRule {
     public TokenRules predict(Character character) {
         return TokenRules.ALL_RULES();
     }
+
+    @Override
+    public String asString() {
+        return ";";
+    }
 }

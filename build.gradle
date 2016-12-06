@@ -30,6 +30,7 @@ dependencies {
 //        include module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("one.util:streamex:0.6.3")
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -37,8 +38,8 @@ dependencies {
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     compile("org.springframework.boot:spring-boot-starter-activemq")
-    compile("org.apache.activemq:activemq-broker")
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+//    compile("org.apache.activemq:activemq-broker")
+//    compile("com.fasterxml.jackson.core:jackson-databind")
+//    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.h2database:h2")
 }

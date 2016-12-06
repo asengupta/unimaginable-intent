@@ -2,6 +2,7 @@ package hello;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static java.util.Arrays.asList;
@@ -21,5 +22,9 @@ public class ESqlRules {
         return "ESqlRules{" +
                 "tokenRules=" + tokenRules +
                 '}';
+    }
+
+    public Stream<TokenRule> stream() {
+        return tokenRules.stream();
     }
 }

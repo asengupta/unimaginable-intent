@@ -25,7 +25,12 @@ public class ArbitraryWordRule extends TokenRule {
 
     @Override
     public TokenRules predict(Character character) {
-        return new TokenRules(new ArbitraryWordRule(character), new WhitespaceRule(), new LineDelimiterRule());
+        return TokenRules.ALL_RULES();
+    }
+
+    @Override
+    public String asString() {
+        return character.toString();
     }
 
     @Override

@@ -29,4 +29,9 @@ public class SpecificWordRule extends TokenRule {
         if (currentState == null) return new TokenRules(new WhitespaceRule());
         return new TokenRules(this);
     }
+
+    @Override
+    public String asString() {
+        return "LOL";
+    }
 }
