@@ -5,7 +5,7 @@ import static java.util.stream.StreamSupport.stream;
 /**
  * Created by asengupta on 11/11/16.
  */
-public class ESqlTokeniserPipeline {
+public class TokenEmitter {
     public ESqlRules run(String input) {
         TokenRules candidateRules = TokenRules.ALL_RULES();
         TokenisingState state = new TokenisingState(candidateRules);
