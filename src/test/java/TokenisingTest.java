@@ -1,14 +1,15 @@
-import hello.*;
+import hello.Atom;
+import hello.AtomFactory;
+import hello.TokenEmitter;
+import hello.TokenRule;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
  * Created by asengupta on 11/11/16.
  */
-public class ESqlTest {
+public class TokenisingTest {
     @Test
     public void canPredictMoveRule() {
         String sample = "  MOVE    func_chain FROM    source TO    dest WHERE select_cond;";

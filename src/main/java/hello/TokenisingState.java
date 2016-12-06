@@ -27,10 +27,10 @@ public class TokenisingState {
     public TokenRules process(Character character, TokenRules candidateRules) {
         Stream<TokenRule> matchingRulesStream = stream(candidateRules.spliterator(), false)
                 .filter(predictedRule -> predictedRule.match(character));
-        Stream<TokenRule> matchingRulesStream2 = stream(candidateRules.spliterator(), false)
+        Stream<TokenRule> matchingRulesStreamCopy = stream(candidateRules.spliterator(), false)
                 .filter(predictedRule -> predictedRule.match(character));
 
-        sequentialRules.addAll(matchingRulesStream2.collect(toList()));
+        sequentialRules.addAll(matchingRulesStreamCopy.collect(toList()));
         List<TokenRule> predictedRulesStream = matchingRulesStream
                 .flatMap(filteredRule -> filteredRule.predict(character).stream())
                 .collect(toList());
