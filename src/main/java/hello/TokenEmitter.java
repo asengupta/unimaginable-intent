@@ -1,5 +1,10 @@
 package hello;
 
+import hello.tokenRules.ArbitraryWordRule;
+import hello.tokenRules.SpecificWordRule;
+import hello.tokenRules.TokenRule;
+import hello.tokenRules.TokenRules;
+
 import java.util.List;
 
 import static java.util.stream.StreamSupport.stream;

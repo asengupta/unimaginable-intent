@@ -1,4 +1,6 @@
-package hello;
+package hello.matchers;
+
+import hello.matchers.CharacterMatcher;
 
 /**
  * Created by asengupta on 11/14/16.

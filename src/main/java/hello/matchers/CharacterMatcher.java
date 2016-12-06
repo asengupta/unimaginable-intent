@@ -1,4 +1,4 @@
-package hello;
+package hello.matchers;
 
 /**
  * Created by asengupta on 11/14/16.

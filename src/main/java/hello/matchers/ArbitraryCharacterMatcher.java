@@ -1,4 +1,6 @@
-package hello;
+package hello.matchers;
+
+import hello.matchers.CharacterMatcher;
 
 import java.util.regex.Pattern;
 

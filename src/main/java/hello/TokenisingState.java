@@ -1,5 +1,8 @@
 package hello;
 
+import hello.tokenRules.TokenRule;
+import hello.tokenRules.TokenRules;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -30,7 +33,8 @@ public class TokenisingState {
         Stream<TokenRule> matchingRulesStreamCopy = stream(candidateRules.spliterator(), false)
                 .filter(predictedRule -> predictedRule.match(character));
 
-        sequentialRules.addAll(matchingRulesStreamCopy.collect(toList()));
+        List<TokenRule> collect = matchingRulesStreamCopy.collect(toList());
+        sequentialRules.addAll(collect);
         List<TokenRule> predictedRulesStream = matchingRulesStream
                 .flatMap(filteredRule -> filteredRule.predict(character).stream())
                 .collect(toList());

@@ -1,5 +1,9 @@
-package hello;
+package hello.tokens;
 
+import hello.tokenRules.ArbitraryWordRule;
+import hello.tokenRules.AssignmentRule;
+import hello.tokenRules.TokenRule;
+import hello.tokenRules.WhitespaceRule;
 import one.util.streamex.StreamEx;
 
 import java.util.List;
@@ -16,22 +20,28 @@ public class AtomFactory {
     public AtomFactory() {
     }
 
-    private Atom build(List<TokenRule> tokenRules) {
+    private Atom reduced(List<TokenRule> tokenRules) {
         if (tokenRules.get(0).getClass() == ArbitraryWordRule.class) {
-            Function<TokenRule, String> tokenRuleStringFunction = tokenRule -> tokenRule.asString();
-            Stream<String> stringStream = tokenRules.stream().map(tokenRuleStringFunction);
-            List<String> collect = stringStream.collect(Collectors.toList());
-            String word = build(collect.toArray());
+            String word = reducedToken(tokenRules);
             return new Word(word);
         }
         if (tokenRules.get(0).getClass() == WhitespaceRule.class) {
-            Function<TokenRule, String> tokenRuleStringFunction = tokenRule -> tokenRule.asString();
-            Stream<String> stringStream = tokenRules.stream().map(tokenRuleStringFunction);
-            List<String> collect = stringStream.collect(Collectors.toList());
-            String word = build(collect.toArray());
+            String word = reducedToken(tokenRules);
             return new Whitespace(word);
         }
+
+        if (tokenRules.get(0).getClass() == AssignmentRule.class) {
+            String word = reducedToken(tokenRules);
+            return new Assignment();
+        }
         return new LineDelimiter();
+    }
+
+    private String reducedToken(List<TokenRule> tokenRules) {
+        Function<TokenRule, String> tokenRuleStringFunction = tokenRule -> tokenRule.asString();
+        Stream<String> stringStream = tokenRules.stream().map(tokenRuleStringFunction);
+        List<String> collect = stringStream.collect(Collectors.toList());
+        return build(collect.toArray());
     }
 
     private String build(Object[] strings) {
@@ -46,7 +56,11 @@ public class AtomFactory {
         return StreamEx.of(tokens.stream()).groupRuns((tokenRuleLeft, tokenRuleRight) ->
                 (tokenRuleLeft.getClass() == ArbitraryWordRule.class && tokenRuleRight.getClass() == ArbitraryWordRule.class) ||
                         (tokenRuleLeft.getClass() == WhitespaceRule.class && tokenRuleRight.getClass() == WhitespaceRule.class))
-                .map(tokenRules -> build(tokenRules))
+                .map(tokenRules -> reduced(tokenRules))
                 .collect(toList());
+    }
+
+    public List<Atom> clean(List<Atom> atoms) {
+        return atoms.stream().filter(atom -> atom.getClass() != Whitespace.class).collect(Collectors.toList());
     }
 }

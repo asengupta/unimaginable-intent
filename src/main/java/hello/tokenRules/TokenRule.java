@@ -1,4 +1,4 @@
-package hello;
+package hello.tokenRules;
 
 /**
  * Created by asengupta on 11/11/16.

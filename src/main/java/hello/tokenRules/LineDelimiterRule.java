@@ -1,4 +1,7 @@
-package hello;
+package hello.tokenRules;
+
+import hello.tokenRules.TokenRule;
+import hello.tokenRules.TokenRules;
 
 /**
  * Created by asengupta on 11/15/16.

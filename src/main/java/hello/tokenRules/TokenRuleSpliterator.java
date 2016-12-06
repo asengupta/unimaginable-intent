@@ -1,4 +1,6 @@
-package hello;
+package hello.tokenRules;
+
+import hello.tokenRules.TokenRule;
 
 import java.util.Spliterator;
 import java.util.function.Consumer;

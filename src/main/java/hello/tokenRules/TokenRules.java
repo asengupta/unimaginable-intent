@@ -1,4 +1,4 @@
-package hello;
+package hello.tokenRules;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -9,7 +9,7 @@ import java.util.stream.StreamSupport;
  */
 public class TokenRules {
     public static TokenRules ALL_RULES() {
-        return new TokenRules(new LineDelimiterRule(), new WhitespaceRule(), new ArbitraryWordRule());
+        return new TokenRules(new LineDelimiterRule(), new WhitespaceRule(), new ArbitraryWordRule(), new AssignmentRule());
     }
 
     private TokenRule[] rules;
