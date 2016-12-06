@@ -1,12 +1,14 @@
 package hello;
 
+import java.util.List;
+
 import static java.util.stream.StreamSupport.stream;
 
 /**
  * Created by asengupta on 11/11/16.
  */
 public class TokenEmitter {
-    public ESqlRules run(String input) {
+    public List<TokenRule> run(String input) {
         TokenRules candidateRules = TokenRules.ALL_RULES();
         TokenisingState state = new TokenisingState(candidateRules);
         stream(new StringSpliterator(input), false).forEach(character -> {

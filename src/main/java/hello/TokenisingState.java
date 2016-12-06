@@ -39,7 +39,7 @@ public class TokenisingState {
         return new TokenRules(predictedRulesStream);
     }
 
-    public ESqlRules emittedRules() {
-        return new ESqlRules(sequentialRules);
+    public List<TokenRule> emittedRules() {
+        return sequentialRules;
     }
 }

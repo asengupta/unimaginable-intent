@@ -42,7 +42,7 @@ public class AtomFactory {
         return stringBuilder.toString();
     }
 
-    public List<Atom> build(ESqlRules tokens) {
+    public List<Atom> build(List<TokenRule> tokens) {
         return StreamEx.of(tokens.stream()).groupRuns((tokenRuleLeft, tokenRuleRight) ->
                 (tokenRuleLeft.getClass() == ArbitraryWordRule.class && tokenRuleRight.getClass() == ArbitraryWordRule.class) ||
                         (tokenRuleLeft.getClass() == WhitespaceRule.class && tokenRuleRight.getClass() == WhitespaceRule.class))

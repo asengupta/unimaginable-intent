@@ -12,7 +12,7 @@ public class ESqlTest {
     @Test
     public void canPredictMoveRule() {
         String sample = "  MOVE    func_chain FROM    source TO    dest WHERE select_cond;";
-        ESqlRules tokens = new TokenEmitter().run(sample);
+        List<TokenRule> tokens = new TokenEmitter().run(sample);
         System.out.println(tokens);
         List<Atom> atoms = new AtomFactory().build(tokens);
         System.out.println(atoms);
