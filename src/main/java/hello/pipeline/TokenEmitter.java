@@ -1,4 +1,4 @@
-package hello;
+package hello.pipeline;
 
 import hello.tokenRules.ArbitraryWordRule;
 import hello.tokenRules.SpecificWordRule;

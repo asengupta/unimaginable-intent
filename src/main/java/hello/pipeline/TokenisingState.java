@@ -1,4 +1,4 @@
-package hello;
+package hello.pipeline;
 
 import hello.tokenRules.TokenRule;
 import hello.tokenRules.TokenRules;

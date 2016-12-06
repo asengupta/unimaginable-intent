@@ -1,4 +1,4 @@
-package hello;
+package hello.pipeline;
 
 import java.util.Spliterator;
 import java.util.function.Consumer;

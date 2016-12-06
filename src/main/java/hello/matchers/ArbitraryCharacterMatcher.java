@@ -10,6 +10,6 @@ import java.util.regex.Pattern;
 public class ArbitraryCharacterMatcher implements CharacterMatcher {
     @Override
     public boolean run(Character character) {
-        return Pattern.compile("[A-Za-z0-9_\\-\\+]+").matcher("" + character).matches();
+        return Pattern.compile("[A-Za-z0-9_]+").matcher("" + character).matches();
     }
 }

@@ -1,9 +1,6 @@
 package hello.tokens;
 
-import hello.tokenRules.ArbitraryWordRule;
-import hello.tokenRules.AssignmentRule;
-import hello.tokenRules.TokenRule;
-import hello.tokenRules.WhitespaceRule;
+import hello.tokenRules.*;
 import one.util.streamex.StreamEx;
 
 import java.util.List;
@@ -31,8 +28,17 @@ public class AtomFactory {
         }
 
         if (tokenRules.get(0).getClass() == AssignmentRule.class) {
-            String word = reducedToken(tokenRules);
             return new Assignment();
+        }
+        if (tokenRules.get(0).getClass() == ArithmeticOperatorRule.class) {
+            String word = reducedToken(tokenRules);
+            return ArithmeticOperator.operator(word);
+        }
+        if (tokenRules.get(0).getClass() == OpeningParenthesisRule.class) {
+            return new OpeningParenthesis();
+        }
+        if (tokenRules.get(0).getClass() == ClosingParenthesisRule.class) {
+            return new ClosingParenthesis();
         }
         return new LineDelimiter();
     }

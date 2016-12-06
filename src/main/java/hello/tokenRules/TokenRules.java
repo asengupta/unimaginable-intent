@@ -9,7 +9,7 @@ import java.util.stream.StreamSupport;
  */
 public class TokenRules {
     public static TokenRules ALL_RULES() {
-        return new TokenRules(new LineDelimiterRule(), new WhitespaceRule(), new ArbitraryWordRule(), new AssignmentRule());
+        return new TokenRules(new LineDelimiterRule(), new WhitespaceRule(), new ArbitraryWordRule(), new AssignmentRule(), new ArithmeticOperatorRule(), new OpeningParenthesisRule(), new ClosingParenthesisRule());
     }
 
     private TokenRule[] rules;
